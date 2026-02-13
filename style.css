@@ -1,0 +1,160 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --background-color: #ffe5ec;
+    --text-color: #590d22;
+    --white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow: hidden; /* Prevent scrolling usually */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Background Animation */
+.background-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    color: var(--secondary-color);
+    opacity: 0.6;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+}
+
+.content-wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(164, 19, 60, 0.2);
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+
+.content-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.question {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    position: relative; /* relative for absolute no button movement if needed, though we change pos to absolute */
+    min-height: 60px; /* Space for buttons */
+}
+
+.btn {
+    padding: 15px 32px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-yes {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-yes:hover {
+    background-color: #d90429;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 77, 109, 0.6);
+}
+
+.btn-no {
+    background-color: #efefef;
+    color: #555;
+    position: relative; /* Default, script changes this */
+}
+
+.hidden {
+    display: none;
+}
+
+#celebration {
+    margin-top: 2rem;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#celebration h2 {
+    color: var(--primary-color);
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .title { font-size: 2.5rem; }
+    .question { font-size: 1.5rem; }
+    .buttons { flex-direction: column; align-items: center; gap: 15px; }
+    .btn { width: 100%; max-width: 250px; }
+    .content-wrapper { padding: 2rem 1.5rem; }
+}
