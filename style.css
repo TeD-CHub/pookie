@@ -205,8 +205,8 @@ p {
 
 /* Video Section */
 .video-section {
-    max-width: 1280px;
-    /* 720p Dimensions */
+    max-width: 800px;
+    /* Reasonable/Balanced Size */
     margin: 50px auto;
     padding: 0 20px;
     text-align: center;
