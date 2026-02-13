@@ -720,6 +720,8 @@ video {
         width: 280px;
         left: 10px;
         top: 10px;
+        height: 180px;
+        /* Fit inside 200px envelope */
         min-height: unset;
         padding: 15px;
     }
