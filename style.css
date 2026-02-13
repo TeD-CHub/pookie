@@ -600,6 +600,30 @@ p {
     width: 100%;
 }
 
+/* Front Label */
+.envelope-label {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 4;
+    /* On top of fold */
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: #d6336c;
+    border: 1px solid #ffdeeb;
+    transform-origin: center;
+    transition: opacity 0.4s;
+}
+
+.envelope-container.open .envelope-label {
+    opacity: 0;
+}
+
 /* Envelope Mobile Response */
 @media (max-width: 600px) {
     .envelope-container {
