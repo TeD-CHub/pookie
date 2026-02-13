@@ -205,8 +205,8 @@ p {
 
 /* Video Section */
 .video-section {
-    max-width: 400px;
-    /* Much smaller/intimate */
+    max-width: 500px;
+    /* Increased to 500px */
     margin: 50px auto;
     padding: 0 20px;
     text-align: center;
