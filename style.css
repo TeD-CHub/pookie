@@ -624,8 +624,69 @@ p {
     opacity: 0;
 }
 
-/* Envelope Mobile Response */
-@media (max-width: 600px) {
+/* --- Responsive Design --- */
+
+/* Global Responsive Fixes */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tablet & Mobile (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .timeline-section {
+        padding: 50px 10px;
+    }
+
+    .main-title {
+        font-size: 4rem;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* Hero */
+    .main-title {
+        font-size: 3rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Timeline - Vertical Stack */
+    .timeline-line {
+        left: 30px;
+        /* Move line to left */
+    }
+
+    .memory-container {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        margin-bottom: 30px;
+    }
+
+    .left,
+    .right {
+        left: 0;
+    }
+
+    /* Reset and move dots to left */
+    .left::after,
+    .right::after {
+        left: 15px;
+        right: auto;
+    }
+
+    /* Video */
+    .video-section {
+        max-width: 90%;
+    }
+
+    /* Envelope */
     .envelope-container {
         width: 300px;
         height: 200px;
@@ -652,13 +713,53 @@ p {
         left: 10px;
         top: 10px;
         min-height: unset;
+        padding: 15px;
+    }
+
+    .letter h2 {
+        font-size: 1.5rem;
     }
 
     .wax-seal {
         top: 60px !important;
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
     }
 
     .envelope-container.open .letter {
-        transform: translateY(-150px);
+        transform: translateY(-120px);
+        /* Less travel on mobile */
+    }
+
+    /* Music Control */
+    .music-control {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    #musicBtn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+
+    .proposal-card {
+        padding: 15px;
+    }
+
+    .buttons {
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 1rem;
     }
 }
