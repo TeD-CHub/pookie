@@ -706,10 +706,14 @@ video {
 
     .body {
         border-bottom-width: 100px;
+        border-left-width: 150px;
+        border-right-width: 150px;
     }
 
     .flap {
         border-top-width: 110px;
+        border-left-width: 150px;
+        border-right-width: 150px;
     }
 
     .letter {
