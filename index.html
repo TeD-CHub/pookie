@@ -7,139 +7,158 @@
     <title>For My Letty ❤️</title>
     <link rel="stylesheet" href="style.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
-    <div class="background-hearts" id="backgroundHearts"></div>
+    <div id="particles-js"></div>
 
-    <div class="container">
-        <div class="content-wrapper">
-            <h1 class="title">My Dearest Letty,</h1>
-            <p class="subtitle">You make my heart skip a beat...</p>
-
-            <div class="slideshow-container">
-                <!-- Slide 1 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory1.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>The Beginning...</h3>
-                        <p>Do you remember the day we met? It felt like the universe aligned just for us. That moment
-                            when our eyes locked, I knew my life was about to change forever. You walked into my world
-                            and suddenly, everything made sense.</p>
-                    </div>
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory2.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Your Smile</h3>
-                        <p>Your smile is my daily sunrise. It has the power to banish my darkest days and bring warmth
-                            to my coldest nights. Just seeing you happy makes my heart race in the most beautiful way.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory3.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Precious Moments</h3>
-                        <p>Every moment we share is a page in my favorite book. Whether we're exploring new places or
-                            just sitting in silence, being with you is the greatest gift I could ever ask for.</p>
-                    </div>
-                </div>
-
-                <!-- Slide 4 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory4.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Forever & Always</h3>
-                        <p>Forever isn't long enough with you. I want to spend every day making you laugh, holding your
-                            hand, and reminding you just how incredibly special you are to me.</p>
-                    </div>
-                </div>
-
-                <!-- Slide 5 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory5.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Safe Haven</h3>
-                        <p>My favorite place is inside your hug. In your arms, the world fades away, and I feel profound
-                            peace. You are my safe haven, my home, and my heart.</p>
-                    </div>
-                </div>
-
-                <!-- Slide 6 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory6.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Our Adventure</h3>
-                        <p>You are my greatest adventure. Life with you is exciting, unpredictable, and full of love. I
-                            can't wait to see what other beautiful memories we will create together.</p>
-                    </div>
-                </div>
-
-                <!-- Slide 7 -->
-                <div class="slide fade">
-                    <div class="slide-image">
-                        <img src="Images/memory7.jpeg" alt="Our Memory">
-                    </div>
-                    <div class="slide-text">
-                        <h3>Endless Love</h3>
-                        <p>I love you more than words can express (and yes, even more than pizza!). You are my best
-                            friend, my soulmate, and the love of my life. Thank you for being you.</p>
-                    </div>
-                </div>
-
-                <!-- Navigation Buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">Our Story</h1>
+            <p class="subtitle">A Journey Through Love</p>
+            <div class="scroll-indicator">
+                <span>Scroll Down</span>
+                <div class="arrow">↓</div>
             </div>
+        </div>
+    </header>
 
-            <div class="video-container">
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-line"></div>
+
+        <!-- Memory 1 -->
+        <div class="memory-container left">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory1.jpeg" alt="The Beginning">
+                </div>
+                <div class="memory-text">
+                    <h3>The Beginning...</h3>
+                    <p>Do you remember the day we met? It felt like the universe aligned just for us. That moment when
+                        our eyes locked, I knew my life was about to change forever.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 2 -->
+        <div class="memory-container right">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory2.jpeg" alt="Your Smile">
+                </div>
+                <div class="memory-text">
+                    <h3>Your Smile</h3>
+                    <p>Your smile is my daily sunrise. It has the power to banish my darkest days and bring warmth to my
+                        coldest nights. Just seeing you happy makes my heart race.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 3 -->
+        <div class="memory-container left">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory3.jpeg" alt="Precious Moments">
+                </div>
+                <div class="memory-text">
+                    <h3>Precious Moments</h3>
+                    <p>Every moment we share is a page in my favorite book. Whether we're exploring new places or just
+                        sitting in silence, being with you is the greatest gift.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 4 -->
+        <div class="memory-container right">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory4.jpeg" alt="Forever">
+                </div>
+                <div class="memory-text">
+                    <h3>Forever & Always</h3>
+                    <p>Forever isn't long enough with you. I want to spend every day making you laugh, holding your
+                        hand, and reminding you just how incredibly special you are.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 5 -->
+        <div class="memory-container left">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory5.jpeg" alt="Safe Haven">
+                </div>
+                <div class="memory-text">
+                    <h3>Safe Haven</h3>
+                    <p>My favorite place is inside your hug. In your arms, the world fades away, and I feel profound
+                        peace. You are my safe haven, my home, and my heart.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 6 -->
+        <div class="memory-container right">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory6.jpeg" alt="Adventure">
+                </div>
+                <div class="memory-text">
+                    <h3>Our Adventure</h3>
+                    <p>You are my greatest adventure. Life with you is exciting, unpredictable, and full of love. I
+                        can't wait to see what other beautiful memories we will create.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory 7 -->
+        <div class="memory-container left">
+            <div class="memory-content glass-card fade-in">
+                <div class="memory-img">
+                    <img src="Images/memory7.jpeg" alt="Endless Love">
+                </div>
+                <div class="memory-text">
+                    <h3>Endless Love</h3>
+                    <p>I love you more than words can express (and yes, even more than pizza!). You are my best friend,
+                        my soulmate, and the love of my life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section fade-in">
+        <div class="glass-card video-card">
+            <h3>Our Favorite Memory</h3>
+            <div class="video-wrapper">
                 <video controls>
                     <source src="Images/our_video.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+        </div>
+    </section>
 
-            <div class="romantic-text-section">
-                <p class="romantic-message">Every moment with you is magic...</p>
-                <p class="romantic-message">You are my favorite thought...</p>
-                <p class="romantic-message">I love you more than words can say.</p>
-            </div>
-
-            <div class="question-box">
-                <h2 class="question">Will you be my Valentine?</h2>
-                <div class="buttons">
-                    <button id="yesBtn" class="btn btn-yes">Yes, I will! 💖</button>
-                    <button id="noBtn" class="btn btn-no">No 😢</button>
-                </div>
-            </div>
-
-            <div id="celebration" class="hidden">
-                <h2>I knew it! I love you! ❤️🥰</h2>
-                <p>Can't wait to spoil you!</p>
+    <!-- Proposal Section -->
+    <section class="proposal-section">
+        <div class="glass-card proposal-card fade-in">
+            <h2 class="question">Will you be my Valentine?</h2>
+            <div class="buttons">
+                <button id="yesBtn" class="btn btn-yes">Yes, I will! 💖</button>
+                <button id="noBtn" class="btn btn-no">No 😢</button>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <div id="celebration" class="hidden glass-card">
+            <h2>I knew it! I love you! ❤️🥰</h2>
+            <p>Can't wait to spoil you!</p>
+        </div>
+    </section>
+
     <script src="script.js"></script>
 </body>
 

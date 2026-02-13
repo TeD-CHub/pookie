@@ -1,42 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Scroll Animations ---
+    const observerOptions = {
+        threshold: 0.2, // Trigger when 20% of the element is visible
+        rootMargin: "0px"
+    };
+
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Stop observing once visible if you want it to happen only once
+                // fadeInObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const fadeElements = document.querySelectorAll('.fade-in');
+    fadeElements.forEach(el => fadeInObserver.observe(el));
+
+    // --- Proposal Logic ---
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
-    const questionBox = document.querySelector('.question-box');
     const celebration = document.getElementById('celebration');
-    const backgroundHearts = document.getElementById('backgroundHearts');
-
-    // Slideshow Logic
-    let slideIndex = 1;
-    showSlides(slideIndex);
-
-    // Make functions global so HTML onclick works
-    window.plusSlides = function (n) {
-        showSlides(slideIndex += n);
-    }
-
-    window.currentSlide = function (n) {
-        showSlides(slideIndex = n);
-    }
-
-    function showSlides(n) {
-        let i;
-        const slides = document.getElementsByClassName("slide");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-            slides[i].classList.remove("active");
-        }
-
-        slides[slideIndex - 1].style.display = "flex";
-        slides[slideIndex - 1].classList.add("active");
-    }
-
-    // Auto Advance Slides
-    setInterval(() => {
-        plusSlides(1);
-    }, 6000);
+    const proposalCard = document.querySelector('.proposal-card');
 
     // Make 'No' button run away
     const moveButton = () => {
@@ -45,81 +31,91 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnWidth = noBtn.offsetWidth;
         const btnHeight = noBtn.offsetHeight;
 
-        // Calculate a new random position
         const newX = Math.random() * (viewportWidth - btnWidth - 40) + 20;
         const newY = Math.random() * (viewportHeight - btnHeight - 40) + 20;
 
-        noBtn.style.position = 'fixed'; // Change to fixed to move freely
+        noBtn.style.position = 'fixed';
         noBtn.style.left = `${newX}px`;
         noBtn.style.top = `${newY}px`;
+        noBtn.style.zIndex = "1000"; // Ensure it floats above everything
     };
 
     noBtn.addEventListener('mouseover', moveButton);
     noBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault(); // Prevent click on touch devices
+        e.preventDefault();
         moveButton();
     });
 
     // Handle 'Yes' click
     yesBtn.addEventListener('click', () => {
-        // Hide question, show celebration
-        questionBox.classList.add('hidden');
+        proposalCard.classList.add('hidden');
         celebration.classList.remove('hidden');
-
-        // Trigger Confetti
         fireConfetti();
-
-        // Continuous confetti for a bit
-        const duration = 3000;
-        const end = Date.now() + duration;
-
-        (function frame() {
-            fireConfetti();
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        }());
+        startLoveRain();
     });
 
+    // --- Confetti & Particles ---
     function fireConfetti() {
-        confetti({
-            particleCount: 5,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: ['#ff4d6d', '#ff8fa3', '#ffe5ec', '#ffffff']
-        });
+        const duration = 5 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+        const random = (min, max) => Math.random() * (max - min) + min;
+
+        const interval = setInterval(function () {
+            const timeLeft = animationEnd - Date.now();
+
+            if (timeLeft <= 0) {
+                return clearInterval(interval);
+            }
+
+            const particleCount = 50 * (timeLeft / duration);
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 } }));
+            confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 } }));
+        }, 250);
     }
 
-    // Background floating hearts and flowers
-    function createFloatingElement(type) {
-        const el = document.createElement('div');
-        el.classList.add('floating-element');
+    function startLoveRain() {
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.innerText = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-10px';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            heart.style.transition = 'top 5s linear, opacity 5s';
+            heart.style.zIndex = '9999';
 
-        if (type === 'heart') {
-            el.innerHTML = '❤️';
-            el.style.fontSize = Math.random() * 20 + 20 + "px";
-        } else {
-            // Flowers
-            const flowers = ['🌸', '🌹', '🌺', '🌷', '🌻'];
-            el.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
-            el.style.fontSize = Math.random() * 25 + 20 + "px";
-        }
+            document.body.appendChild(heart);
 
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = Math.random() * 5 + 5 + "s"; // 5-10s duration
+            setTimeout(() => {
+                heart.style.top = '110vh';
+                heart.style.opacity = '0';
+            }, 100);
 
-        backgroundHearts.appendChild(el);
-
-        setTimeout(() => {
-            el.remove();
-        }, 10000);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }, 300);
     }
 
-    setInterval(() => {
-        createFloatingElement('heart');
-    }, 400);
+    // --- Background Floating Particles (CSS handled, just adding some JS variety) ---
+    // Simple floating hearts for the background
+    const particlesContainer = document.getElementById('particles-js');
+    for (let i = 0; i < 20; i++) {
+        createBackgroundParticle();
+    }
 
-    setInterval(() => {
-        createFloatingElement('flower');
-    }, 600);
+    function createBackgroundParticle() {
+        if (!particlesContainer) return;
+        const p = document.createElement('div');
+        p.innerText = Math.random() > 0.5 ? '✨' : '🌸';
+        p.style.position = 'absolute';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.fontSize = Math.random() * 15 + 10 + 'px';
+        p.style.opacity = Math.random() * 0.5 + 0.1;
+        p.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+        particlesContainer.appendChild(p);
+    }
 });
