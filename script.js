@@ -114,6 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (newNoBtn) {
         // Keep the runaway logic
+        let yesScale = 1;
+        let noScale = 1;
+
         const moveButtonNew = () => {
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
@@ -127,6 +130,16 @@ document.addEventListener('DOMContentLoaded', () => {
             newNoBtn.style.left = `${newX}px`;
             newNoBtn.style.top = `${newY}px`;
             newNoBtn.style.zIndex = "1000";
+
+            // Make Yes grow and No shrink
+            yesScale += 0.2;
+            noScale -= 0.05;
+            newYesBtn.style.transform = `scale(${yesScale})`;
+            newNoBtn.style.transform = `scale(${noScale})`;
+
+            // Optional: Reset No text to taunt
+            const taunts = ["Oops!", "Missed!", "Too Slow!", "Try Again!", "Can't Catch Me!"];
+            newNoBtn.innerText = taunts[Math.floor(Math.random() * taunts.length)];
         };
 
         newNoBtn.addEventListener('mouseover', moveButtonNew);
