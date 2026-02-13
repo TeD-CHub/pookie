@@ -12,13 +12,15 @@ body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
     color: var(--text-color);
-    overflow: hidden;
-    /* Prevent scrolling usually */
-    height: 100vh;
+    min-height: 100vh;
+    /* Allow content to grow */
+    /* overflow: hidden;  REMOVED to allow scrolling */
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll only */
 }
 
 /* Background Animation */
@@ -60,8 +62,12 @@ body {
     position: relative;
     z-index: 10;
     text-align: center;
-    width: 90%;
-    max-width: 600px;
+    width: 95%;
+    /* Wider on small screens too */
+    max-width: 1200px;
+    /* Maximize screen usage */
+    margin: 50px 0;
+    /* Add vertical margin for scrolling */
 }
 
 .content-wrapper {
@@ -79,7 +85,8 @@ body {
 
 /* Slideshow Container */
 .slideshow-container {
-    max-width: 900px;
+    max-width: 100%;
+    /* Fill the container */
     position: relative;
     margin: auto;
     background: rgba(255, 255, 255, 0.9);
