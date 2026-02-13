@@ -205,8 +205,8 @@ p {
 
 /* Video Section */
 .video-section {
-    max-width: 500px;
-    /* Increased to 500px */
+    max-width: 1280px;
+    /* 720p Dimensions */
     margin: 50px auto;
     padding: 0 20px;
     text-align: center;
@@ -694,10 +694,14 @@ video {
 
     .envelope::before {
         border-left-width: 150px;
+        border-top-width: 100px;
+        border-bottom-width: 100px;
     }
 
     .envelope::after {
         border-right-width: 150px;
+        border-top-width: 100px;
+        border-bottom-width: 100px;
     }
 
     .body {
