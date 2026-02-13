@@ -77,68 +77,159 @@ body {
     transform: translateY(-5px);
 }
 
-/* Photo Gallery Styles */
-.photo-gallery {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-}
-
-
-.photo-card {
-    background: white;
-    padding: 10px 10px 45px 10px;
-    /* Increased bottom padding for caption */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transform: rotate(var(--rotation));
-    animation: floatPhoto var(--float-duration) ease-in-out infinite;
-    transition: transform 0.3s ease, z-index 0.3s, box-shadow 0.3s;
+/* Slideshow Container */
+.slideshow-container {
+    max-width: 900px;
     position: relative;
-    z-index: 1;
-    text-align: center;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(164, 19, 60, 0.2);
+    overflow: hidden;
 }
 
-.photo-card:hover {
-    transform: scale(1.15) rotate(0deg) !important;
-    z-index: 100;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+.slide {
+    display: none;
+    /* Hidden by default */
+    display: flex;
+    /* Flex when active (overridden by script usually, but we need a class for active) */
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 20px;
+    animation: fadeEffect 1s;
+    flex-direction: row;
+    /* Landscape layout */
 }
 
-.photo-card img {
-    display: block;
-    width: 150px;
-    /* Slightly larger */
-    height: 150px;
-    object-fit: cover;
-    border: 1px solid #f0f0f0;
-    margin-bottom: 5px;
+/* Active slide class to show it */
+.slide.active {
+    display: flex;
 }
 
-.caption {
-    font-family: 'Dancing Script', cursive;
-    color: #333;
-    font-size: 1rem;
-    position: absolute;
-    bottom: 10px;
-    left: 0;
+/* Slide Content */
+.slide-image {
+    flex: 1;
+    max-width: 50%;
+}
+
+.slide-image img {
     width: 100%;
-    margin: 0;
-    line-height: 1.2;
+    border-radius: 10px;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    max-height: 400px;
 }
 
-@keyframes floatPhoto {
+.slide-text {
+    flex: 1;
+    text-align: left;
+    padding: 10px;
+}
 
-    0%,
+.slide-text h3 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.slide-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    font-style: italic;
+}
+
+/* Navigation Buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+.next {
+    right: 10px;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 10px;
+    border-radius: 50%;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeEffect {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* Floating Elements (Flowers & Hearts) */
+.floating-element {
+    position: absolute;
+    top: -10%;
+    pointer-events: none;
+    animation: floatDown linear infinite;
+    z-index: 0;
+}
+
+@keyframes floatDown {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
     100% {
-        transform: rotate(var(--rotation)) translateY(0);
-    }
-
-    50% {
-        transform: rotate(var(--rotation)) translateY(-10px);
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
     }
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .slide {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .slide-image {
+        max-width: 100%;
+    }
+
+    .slide-text {
+        text-align: center;
+    }
+}
+
 
 .title {
     font-family: 'Dancing Script', cursive;
