@@ -205,8 +205,8 @@ p {
 
 /* Video Section */
 .video-section {
-    max-width: 600px;
-    /* Reduced from 900px for a more intimate feel */
+    max-width: 400px;
+    /* Much smaller/intimate */
     margin: 50px auto;
     padding: 0 20px;
     text-align: center;
@@ -466,9 +466,11 @@ p {
 /* Envelope Styles */
 .envelope-container {
     position: relative;
-    width: 300px;
-    height: 200px;
-    margin: 50px auto;
+    width: 500px;
+    /* Much Bigger */
+    height: 300px;
+    /* Bigger */
+    margin: 80px auto;
     cursor: pointer;
     perspective: 1000px;
     transition: transform 0.5s;
@@ -482,12 +484,12 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
-    background: #FF6B6B;
-    /* Envelope color */
+    background: #e03131;
     border-radius: 0 0 10px 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+/* Adjust triangles for 500px width */
 .envelope::before {
     /* Left triangle */
     content: '';
@@ -496,9 +498,10 @@ p {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid #FF8787;
-    border-top: 100px solid transparent;
-    border-bottom: 100px solid transparent;
+    border-left: 250px solid #f03e3e;
+    /* Half of 500 */
+    border-top: 150px solid transparent;
+    border-bottom: 150px solid transparent;
     z-index: 2;
 }
 
@@ -510,9 +513,10 @@ p {
     right: 0;
     width: 0;
     height: 0;
-    border-right: 150px solid #FF8787;
-    border-top: 100px solid transparent;
-    border-bottom: 100px solid transparent;
+    border-right: 250px solid #f03e3e;
+    /* Half of 500 */
+    border-top: 150px solid transparent;
+    border-bottom: 150px solid transparent;
     z-index: 2;
 }
 
@@ -523,9 +527,9 @@ p {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 100px solid #FA5252;
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-bottom: 170px solid #c92a2a;
     z-index: 3;
     border-radius: 0 0 10px 10px;
 }
@@ -537,12 +541,12 @@ p {
     left: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-top: 110px solid #FF6B6B;
-    /* Darker than sides */
+    border-left: 250px solid transparent;
+    border-right: 250px solid transparent;
+    border-top: 180px solid #e03131;
     transform-origin: top;
-    transition: transform 0.6s ease-in-out, z-index 0.6s;
+    transition: transform 0.6s ease-in-out 0.2s, z-index 0.6s;
+    /* Delay flap slightly */
     z-index: 4;
 }
 
@@ -551,40 +555,86 @@ p {
     z-index: 1;
 }
 
+/* Wax Seal Position Update */
+.wax-seal {
+    top: 90px !important;
+    /* Force position */
+}
+
+
 .letter {
     position: absolute;
     top: 10px;
-    left: 10px;
-    width: 280px;
-    height: 180px;
+    left: 25px;
+    /* Centered in 500px width approx */
+    width: 450px;
+    /* Matches container with padding */
+    height: 280px;
     background: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.6s ease-in-out;
+    border-radius: 10px;
+    /* Softer corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    /* Bouncy pop */
     z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     box-sizing: border-box;
+    /* Hide initially if needed, but z-index handles it */
 }
 
 .envelope-container.open .letter {
-    transform: translateY(-150px);
-    z-index: 5;
+    transform: translateY(-200px) scale(1.1);
+    /* Rise high and scale up */
+    z-index: 10;
     height: auto;
-    min-height: 250px;
+    min-height: 350px;
+    /* Expand height to fit content nicely */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .letter-content {
     width: 100%;
 }
 
-.envelope-message {
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-    color: var(--primary-color);
-    animation: bounce 2s infinite;
+/* Envelope Mobile Response */
+@media (max-width: 600px) {
+    .envelope-container {
+        width: 300px;
+        height: 200px;
+    }
+
+    .envelope::before {
+        border-left-width: 150px;
+    }
+
+    .envelope::after {
+        border-right-width: 150px;
+    }
+
+    .body {
+        border-bottom-width: 100px;
+    }
+
+    .flap {
+        border-top-width: 110px;
+    }
+
+    .letter {
+        width: 280px;
+        left: 10px;
+        top: 10px;
+        min-height: unset;
+    }
+
+    .wax-seal {
+        top: 60px !important;
+    }
+
+    .envelope-container.open .letter {
+        transform: translateY(-150px);
+    }
 }
