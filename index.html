@@ -1,19 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Letty ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="background-hearts" id="backgroundHearts"></div>
-    
+
     <div class="container">
         <div class="content-wrapper">
             <h1 class="title">My Dearest Letty,</h1>
             <p class="subtitle">You make my heart skip a beat...</p>
+
+            <div class="photo-gallery">
+                <div class="photo-card" style="--rotation: -5deg; --float-duration: 4s;">
+                    <img src="Images/memory1.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: 3deg; --float-duration: 5s;">
+                    <img src="Images/memory2.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: -3deg; --float-duration: 6s;">
+                    <img src="Images/memory3.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: 4deg; --float-duration: 4.5s;">
+                    <img src="Images/memory4.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: -4deg; --float-duration: 5.5s;">
+                    <img src="Images/memory5.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: 2deg; --float-duration: 6.5s;">
+                    <img src="Images/memory6.jpeg" alt="Our Memory">
+                </div>
+                <div class="photo-card" style="--rotation: -2deg; --float-duration: 5.2s;">
+                    <img src="Images/memory7.jpeg" alt="Our Memory">
+                </div>
+            </div>
+
+            <div class="video-container">
+                <video controls>
+                    <source src="Images/our_video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="romantic-text-section">
+                <p class="romantic-message">Every moment with you is magic...</p>
+                <p class="romantic-message">You are my favorite thought...</p>
+                <p class="romantic-message">I love you more than words can say.</p>
+            </div>
+
             <div class="question-box">
                 <h2 class="question">Will you be my Valentine?</h2>
                 <div class="buttons">
@@ -21,6 +63,7 @@
                     <button id="noBtn" class="btn btn-no">No 😢</button>
                 </div>
             </div>
+
             <div id="celebration" class="hidden">
                 <h2>I knew it! I love you! ❤️🥰</h2>
                 <p>Can't wait to spoil you!</p>
@@ -31,4 +74,5 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

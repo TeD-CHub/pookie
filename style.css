@@ -12,7 +12,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
-    overflow: hidden; /* Prevent scrolling usually */
+    overflow: hidden;
+    /* Prevent scrolling usually */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -44,9 +45,11 @@ body {
         transform: translateY(100vh) scale(0.5);
         opacity: 0;
     }
+
     10% {
         opacity: 0.8;
     }
+
     100% {
         transform: translateY(-10vh) scale(1.2);
         opacity: 0;
@@ -74,6 +77,53 @@ body {
     transform: translateY(-5px);
 }
 
+/* Photo Gallery Styles */
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.photo-card {
+    background: white;
+    padding: 10px 10px 25px 10px;
+    /* Extra bottom padding for polaroid look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transform: rotate(var(--rotation));
+    animation: floatPhoto var(--float-duration) ease-in-out infinite;
+    transition: transform 0.3s ease, z-index 0.3s;
+    position: relative;
+    z-index: 1;
+}
+
+.photo-card:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.photo-card img {
+    display: block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 1px solid #eee;
+}
+
+@keyframes floatPhoto {
+
+    0%,
+    100% {
+        transform: rotate(var(--rotation)) translateY(0);
+    }
+
+    50% {
+        transform: rotate(var(--rotation)) translateY(-10px);
+    }
+}
+
 .title {
     font-family: 'Dancing Script', cursive;
     font-size: 3.5rem;
@@ -87,6 +137,60 @@ body {
     font-weight: 300;
 }
 
+
+.video-container {
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(164, 19, 60, 0.3);
+    border: 5px solid white;
+}
+
+.video-container video {
+    width: 100%;
+    display: block;
+}
+
+.romantic-text-section {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.romantic-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin: 10px 0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.romantic-message:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.romantic-message:nth-child(2) {
+    animation-delay: 2.5s;
+}
+
+.romantic-message:nth-child(3) {
+    animation-delay: 4.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
 .question {
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -97,8 +201,10 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
-    position: relative; /* relative for absolute no button movement if needed, though we change pos to absolute */
-    min-height: 60px; /* Space for buttons */
+    position: relative;
+    /* relative for absolute no button movement if needed, though we change pos to absolute */
+    min-height: 60px;
+    /* Space for buttons */
 }
 
 .btn {
@@ -110,7 +216,7 @@ body {
     transition: all 0.3s ease;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-yes {
@@ -127,7 +233,8 @@ body {
 .btn-no {
     background-color: #efefef;
     color: #555;
-    position: relative; /* Default, script changes this */
+    position: relative;
+    /* Default, script changes this */
 }
 
 .hidden {
@@ -146,15 +253,39 @@ body {
 }
 
 @keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Mobile responsiveness */
 @media (max-width: 600px) {
-    .title { font-size: 2.5rem; }
-    .question { font-size: 1.5rem; }
-    .buttons { flex-direction: column; align-items: center; gap: 15px; }
-    .btn { width: 100%; max-width: 250px; }
-    .content-wrapper { padding: 2rem 1.5rem; }
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .question {
+        font-size: 1.5rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .content-wrapper {
+        padding: 2rem 1.5rem;
+    }
 }
