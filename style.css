@@ -10,7 +10,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
     color: var(--text-color);
     overflow: hidden;
     /* Prevent scrolling usually */
@@ -86,30 +86,46 @@ body {
     flex-wrap: wrap;
 }
 
+
 .photo-card {
     background: white;
-    padding: 10px 10px 25px 10px;
-    /* Extra bottom padding for polaroid look */
+    padding: 10px 10px 45px 10px;
+    /* Increased bottom padding for caption */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transform: rotate(var(--rotation));
     animation: floatPhoto var(--float-duration) ease-in-out infinite;
-    transition: transform 0.3s ease, z-index 0.3s;
+    transition: transform 0.3s ease, z-index 0.3s, box-shadow 0.3s;
     position: relative;
     z-index: 1;
+    text-align: center;
 }
 
 .photo-card:hover {
-    transform: scale(1.1) rotate(0deg) !important;
-    z-index: 10;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: scale(1.15) rotate(0deg) !important;
+    z-index: 100;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .photo-card img {
     display: block;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    /* Slightly larger */
+    height: 150px;
     object-fit: cover;
-    border: 1px solid #eee;
+    border: 1px solid #f0f0f0;
+    margin-bottom: 5px;
+}
+
+.caption {
+    font-family: 'Dancing Script', cursive;
+    color: #333;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    line-height: 1.2;
 }
 
 @keyframes floatPhoto {
