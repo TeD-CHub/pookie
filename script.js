@@ -91,9 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const newYesBtn = document.getElementById('yesBtn');
     const newNoBtn = document.getElementById('noBtn');
 
+    // Handle 'Yes' click
     if (newYesBtn) {
         newYesBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing envelope
+
+            // Play Music
+            if (bgMusic.paused) {
+                bgMusic.play().then(() => {
+                    musicBtn.innerText = "⏸️ Pause Music";
+                    isPlaying = true;
+                }).catch(e => console.log("Audio play failed", e));
+            }
+
             document.querySelector('.proposal-section').innerHTML = ''; // Clear envelope
             document.querySelector('.proposal-section').appendChild(celebration); // Move celebration here
             celebration.classList.remove('hidden');
