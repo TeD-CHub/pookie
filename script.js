@@ -9,8 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: Stop observing once visible if you want it to happen only once
-                // fadeInObserver.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -18,41 +16,118 @@ document.addEventListener('DOMContentLoaded', () => {
     const fadeElements = document.querySelectorAll('.fade-in');
     fadeElements.forEach(el => fadeInObserver.observe(el));
 
+    // --- Magic Dust Cursor ---
+    document.addEventListener('mousemove', (e) => {
+        createDust(e.pageX, e.pageY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        const touch = e.touches[0];
+        createDust(touch.pageX, touch.pageY);
+    });
+
+    function createDust(x, y) {
+        const dust = document.createElement('div');
+        dust.classList.add('magic-dust');
+        dust.style.left = `${x}px`;
+        dust.style.top = `${y}px`;
+        dust.style.background = `hsl(${Math.random() * 360}, 100%, 75%)`; // Random pastel colors
+        document.body.appendChild(dust);
+
+        setTimeout(() => {
+            dust.remove();
+        }, 1000);
+    }
+
+    // --- Love Timer ---
+    const startDate = new Date("2025-09-06T00:00:00");
+
+    function updateTimer() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = hours;
+        document.getElementById('minutes').innerText = minutes;
+        document.getElementById('seconds').innerText = seconds;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer(); // Initial call
+
+    // --- Music Player ---
+    const musicBtn = document.getElementById('musicBtn');
+    const bgMusic = document.getElementById('bgMusic');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', () => {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicBtn.innerText = "🎵 Play Music";
+            isPlaying = false;
+        } else {
+            bgMusic.play().then(() => {
+                musicBtn.innerText = "⏸️ Pause Music";
+                isPlaying = true;
+            }).catch(e => {
+                console.log("Autoplay prevented or interaction required", e);
+            });
+        }
+    });
+
+    // --- Envelope Logic ---
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+        envelope.classList.toggle('open');
+    });
+
     // --- Proposal Logic ---
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
     const celebration = document.getElementById('celebration');
-    const proposalCard = document.querySelector('.proposal-card');
+    const newYesBtn = document.getElementById('yesBtn');
+    const newNoBtn = document.getElementById('noBtn');
 
-    // Make 'No' button run away
-    const moveButton = () => {
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        const btnWidth = noBtn.offsetWidth;
-        const btnHeight = noBtn.offsetHeight;
+    if (newYesBtn) {
+        newYesBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing envelope
+            document.querySelector('.proposal-section').innerHTML = ''; // Clear envelope
+            document.querySelector('.proposal-section').appendChild(celebration); // Move celebration here
+            celebration.classList.remove('hidden');
+            fireConfetti();
+            startLoveRain();
+        });
+    }
 
-        const newX = Math.random() * (viewportWidth - btnWidth - 40) + 20;
-        const newY = Math.random() * (viewportHeight - btnHeight - 40) + 20;
+    if (newNoBtn) {
+        // Keep the runaway logic
+        const moveButtonNew = () => {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const btnWidth = newNoBtn.offsetWidth;
+            const btnHeight = newNoBtn.offsetHeight;
 
-        noBtn.style.position = 'fixed';
-        noBtn.style.left = `${newX}px`;
-        noBtn.style.top = `${newY}px`;
-        noBtn.style.zIndex = "1000"; // Ensure it floats above everything
-    };
+            const newX = Math.random() * (viewportWidth - btnWidth - 40) + 20;
+            const newY = Math.random() * (viewportHeight - btnHeight - 40) + 20;
 
-    noBtn.addEventListener('mouseover', moveButton);
-    noBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        moveButton();
-    });
+            newNoBtn.style.position = 'fixed';
+            newNoBtn.style.left = `${newX}px`;
+            newNoBtn.style.top = `${newY}px`;
+            newNoBtn.style.zIndex = "1000";
+        };
 
-    // Handle 'Yes' click
-    yesBtn.addEventListener('click', () => {
-        proposalCard.classList.add('hidden');
-        celebration.classList.remove('hidden');
-        fireConfetti();
-        startLoveRain();
-    });
+        newNoBtn.addEventListener('mouseover', moveButtonNew);
+        newNoBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButtonNew();
+        });
+
+        // Prevent click from bubbling to envelope
+        newNoBtn.addEventListener('click', (e) => e.stopPropagation());
+    }
 
     // --- Confetti & Particles ---
     function fireConfetti() {
@@ -99,11 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
 
-    // --- Background Floating Particles (CSS handled, just adding some JS variety) ---
-    // Simple floating hearts for the background
+    // --- Background Floating Particles ---
     const particlesContainer = document.getElementById('particles-js');
-    for (let i = 0; i < 20; i++) {
-        createBackgroundParticle();
+    if (particlesContainer) {
+        for (let i = 0; i < 20; i++) {
+            createBackgroundParticle();
+        }
     }
 
     function createBackgroundParticle() {

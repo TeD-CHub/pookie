@@ -15,6 +15,14 @@
 <body>
     <div id="particles-js"></div>
 
+    <!-- Music Player -->
+    <div class="music-control">
+        <button id="musicBtn">🎵 Play Music</button>
+        <audio id="bgMusic" loop>
+            <source src="Images/song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
     <!-- Hero Section -->
     <header class="hero-section">
         <div class="hero-content">
@@ -26,6 +34,17 @@
             </div>
         </div>
     </header>
+
+    <!-- Love Timer -->
+    <section class="timer-section glass-card">
+        <h2>We've been falling in love for...</h2>
+        <div id="loveTimer">
+            <div><span id="days">0</span>Days</div>
+            <div><span id="hours">0</span>Hours</div>
+            <div><span id="minutes">0</span>Minutes</div>
+            <div><span id="seconds">0</span>Seconds</div>
+        </div>
+    </section>
 
     <!-- Timeline Section -->
     <section class="timeline-section">
@@ -133,7 +152,7 @@
     <!-- Video Section -->
     <section class="video-section fade-in">
         <div class="glass-card video-card">
-            <h3>Favorite Video</h3>
+            <h3>My Favorite Video</h3>
             <div class="video-wrapper">
                 <video controls>
                     <source src="Images/Fav.mp4" type="video/mp4">
@@ -143,14 +162,23 @@
         </div>
     </section>
 
-    <!-- Proposal Section -->
+    <!-- Proposal Envelope Section -->
     <section class="proposal-section">
-        <div class="glass-card proposal-card fade-in">
-            <h2 class="question">Will you be my Valentine?</h2>
-            <div class="buttons">
-                <button id="yesBtn" class="btn btn-yes">Yes, I will! 💖</button>
-                <button id="noBtn" class="btn btn-no">No 😢</button>
+        <div class="envelope-container fade-in" id="envelope">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="body"></div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <h2 class="question">Will you be my Valentine?</h2>
+                        <div class="buttons">
+                            <button id="yesBtn" class="btn btn-yes">Yes! 💖</button>
+                            <button id="noBtn" class="btn btn-no">No</button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="envelope-message">Click to Open 💌</div>
         </div>
 
         <div id="celebration" class="hidden glass-card">
